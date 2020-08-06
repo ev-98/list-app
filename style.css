@@ -9,20 +9,42 @@ body{
 }
 
 header{
+    min-height: 1vh;
     font-size:2rem
 }
 
+.time-display{
+    font-size: 1.5rem;
+}
+
+#quote-display{
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.time-display, #quote-display{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 1rem;
+}
+
 header, form{
-    min-height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+form{
+    min-height: 20vh;
 }
 
 form input, form button{
     padding: 0.5rem;
     font-size: 2rem;
     background: white;
+    border: none;
 }
 
 form button{
@@ -55,6 +77,7 @@ form button:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .todo li{
@@ -78,4 +101,57 @@ form button:hover{
 }
 .todo-item{
     padding: 0rem 0.5rem;
+}
+
+.fa-trash, .fa-check{
+    pointer-events: none;
+}
+
+.completed{
+    opacity: 0.5;
+    text-decoration:line-through;
+}
+
+.fall{
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+.select{
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select{
+    /* font-family: 'Playfair Display', serif;
+    font-size:  1.5rem; */
+    width: 10rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.select::after{
+    content:"\25BC";
+    position: absolute;
+    background: blue;
+    color:white;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.select:hover::after{
+    background:white;
+    color: blue;
 }
