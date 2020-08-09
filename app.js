@@ -1,5 +1,7 @@
 //Selectors
-let quoteBox = document.getElementById("quote-display")
+let dateBox = document.getElementById("date-display");
+let timeBox = document.getElementById("time-display");
+let quoteBox = document.getElementById("quote-display");
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
@@ -8,6 +10,8 @@ const filterOption = document.querySelector('.filter-todo');
 //Event listeners
 
 //generates new random quote on page load
+document.addEventListener('DOMContentLoaded', displayDate);
+document.addEventListener('DOMContentLoaded', displayClock);
 document.addEventListener('DOMContentLoaded', getQuote);
 document.addEventListener('DOMContentLoaded', getTodos);
 todoButton.addEventListener('click', addTodo);
@@ -166,9 +170,46 @@ function removeLocalTodos(todo){
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+function displayDate(){
+
+    var today = new Date();
+
+     //for date
+     var month = today.getMonth() + 1;
+     var date = today.getDate();
+     var year = today.getFullYear();
+
+     //displaying date
+     let cur_date = `${month}.${date}.${year}`;
+     console.log(cur_date);
+     dateBox.innerHTML = cur_date;
+}
+function displayClock(){
+
+    var rtClock = new Date();
+
+    //for time
+    var hours = rtClock.getHours();
+    var minutes = rtClock.getMinutes();
+    var seconds = rtClock.getSeconds();
+
+    //AM PM calculation
+    var amPm = (hours < 12) ? "AM" : "PM";
+    hours = (hours > 12) ? hours - 12: hours;
+
+    //formatting time
+    hours = ("0" + hours).slice(-2);
+    minutes = ("0" + minutes).slice(-2);
+    seconds = ("0" + seconds).slice(-2);
+
+    //displaying time
+    var cur_time = hours + "  :  " + minutes + "  :  " + seconds + " " + amPm;
+    timeBox.innerHTML = cur_time; 
+    var t = setTimeout(displayClock, 500);
+}
+
 function getQuote(){
     var randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
-    console.log(randomQuote);
     quoteBox.innerHTML = randomQuote;
 }
 
