@@ -37,6 +37,7 @@ header{
     max-width: 500px;
     text-align: center;
     font-size: 7rem;
+    padding-top: 0;
     padding-bottom: 0;
 }
 
@@ -184,6 +185,21 @@ select{
 .select:hover::after{
     background:#0C0F16;
     color: white;
+}
+
+#music{
+    position: fixed;
+  bottom: 0;
+}
+
+#music button{
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: none;
+    color: white;
+    background: #0E131B;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 #stars {

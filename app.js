@@ -6,14 +6,18 @@ const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
+var audio = document.getElementById('audio');
+var playButton = document.getElementById('play-button');
+//to check mute, unmute status
+var count=0;
 
 //Event listeners
-
-//generates new random quote on page load
+document.addEventListener('DOMContentLoaded', playAudio);
 document.addEventListener('DOMContentLoaded', displayDate);
 document.addEventListener('DOMContentLoaded', displayClock);
 document.addEventListener('DOMContentLoaded', getQuote);
 document.addEventListener('DOMContentLoaded', getTodos);
+playButton.addEventListener('click', muteUnmute);
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
@@ -168,6 +172,24 @@ function removeLocalTodos(todo){
     const todoIndex = Array.from(todoList.childNodes).indexOf(todo);
     todos.splice(todoIndex, 1);
     localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function playAudio(){
+    audio.mute = false;
+    audio.loop = true;
+}
+
+function muteUnmute(){
+    if(count==0){
+        count=1;
+        audio.play();
+        playButton.innerHTML= '<i class="fas fa-volume-up"></i>';
+    }
+    else{
+        count=0;
+        audio.pause();
+        playButton.innerHTML= '<i class="fas fa-volume-mute"></i>';
+    }
 }
 
 function displayDate(){
